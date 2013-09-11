@@ -1,753 +1,714 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="mediation-normalization">
-    <flow SubFlow="false" name="MediationFlow" entity-id="fcaa88a4-0ea1-47d6-9358-0e4017cdabd7">
+    <flow SubFlow="false" name="MediationFlow" entity-id="e98d1c22-f6ed-4fd8-9070-bede1f1b6982">
         <properties>
-            <property name="processingStrategy"/>
             <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="auxiliary;index" value="1"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="1"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="auxiliary;index" value="1"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
-            <graphicalData x="0" y="0" width="0" height="0"/>
             <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="Read queue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="ref"/>
-                    <property name="transformer-refs"/>
-                    <property name="address"/>
-                    <property name="businessEventsLabel"/>
-                    <property name="encoding"/>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="auxiliary;index" value="2"/>
                     <property name="path" value="transactionRouterQueue"/>
-                    <property name="responseTransformer-refs"/>
-                    <property name="disableTransportTransformer"/>
-                    <property name="mimeType" value="text/plain"/>
-                    <property name="responseTimeout" value="10000"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="businessEventsLabel"/>
                     <property name="tracking:enable-default-events"/>
                     <property name="auxiliary;index" value="2"/>
-                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="address"/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType" value="text/plain"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="auxiliary;index" value="2"/>
                     <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="auxiliary;index" value="2"/>
                 </properties>
             </endpoint>
             <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="message" value="Starting normalization on structured message: #[groovy: message.payload.toString();]"/>
-                    <property name="category"/>
                     <property name="level" value="INFO"/>
+                    <property name="category"/>
+                    <property name="auxiliary;index" value="3"/>
+                    <property name="auxiliary;index" value="3"/>
                     <property name="auxiliary;index" value="3"/>
                 </properties>
             </pattern>
             <splitter index="4" name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name=";INDEX" value="4"/>
-                    <property-collection name="6efd8d7f-4272-4f14-aabd-47a4b899f17d">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="4888798f-99a3-4c05-b914-05d88ccc4e3c">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounter/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounter/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="17b2a002-63b7-425a-bd2e-7149e82df76e">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/professional/')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/professional/')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="e32b8181-7686-4f1f-b034-f51fab86d46d">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/facilities')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/facilities')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="2a1653a8-e71c-4ea6-8eeb-6cf37ad331cd">
-                        <property name="choice.otherwise" value="true"/>
-                        <property-collection name="choice.attributes"/>
-                    </property-collection>
-                    <property-collection name="1ac5ee54-03e0-4e5f-b85e-4fbb9ff713b4">
+                    <property-collection name="05111743-bad8-4ef1-a4fa-fc0920cc603a">
                         <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/alerts') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
                         <property-collection name="choice.attributes">
                             <property name="expression" value="message.payload.path.contains('ws/rest/v1/alerts') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
                             <property name="evaluator" value="groovy"/>
                         </property-collection>
                     </property-collection>
-                    <property-collection name="a31501a2-7d81-450a-8816-e5253d33ef62">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
+                    <property-collection name="4c6a86ee-0d1f-4fd0-ad10-47dbba718560">
+                        <property name="choice.otherwise" value="true"/>
+                        <property-collection name="choice.attributes"/>
                     </property-collection>
-                    <property-collection name="8adca4a3-8739-46f5-95e2-bf0404b2d44d">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="4852f1ed-7399-43cb-a338-a0de2c863f4d">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/professionals')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/professionals')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="31d16709-23ba-4bcb-bc92-e54b3cfe9829">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/facility/')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/facility/')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="a262b7fd-218d-4861-88d2-426cbe8537da">
-                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('PUT')"/>
-                        <property-collection name="choice.attributes">
-                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('PUT')"/>
-                            <property name="evaluator" value="groovy"/>
-                        </property-collection>
-                    </property-collection>
-                    <property-collection name="c6ede2dc-54b5-496a-8756-e861c2db0aba">
+                    <property-collection name="611b78bd-9495-4d7c-99c7-45eddab7dc4d">
                         <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
                         <property-collection name="choice.attributes">
                             <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
                             <property name="evaluator" value="groovy"/>
                         </property-collection>
                     </property-collection>
-                    <property-collection name="1ef92028-96c4-4c3c-8a65-ef8926674980">
+                    <property-collection name="82e14be3-845d-47e1-83ab-0444b904442a">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/identifier') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/identifier') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="bb366997-e0ff-4333-be35-b75b2e0e441d">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="40c2d655-90e6-4609-b986-457c54e7937b">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="50400a1c-6c78-4966-926d-4c6d05d09b08">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounter/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounter/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="a61ca62f-c8d0-450d-8d27-03112ddcbafb">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/professionals')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/professionals')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="a4dff498-b666-41bd-a54d-a92c6b8aacbb">
                         <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
                         <property-collection name="choice.attributes">
                             <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
                             <property name="evaluator" value="groovy"/>
                         </property-collection>
                     </property-collection>
+                    <property-collection name="ab7f1e92-61d7-433c-81b4-9984792d19cd">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/professional/')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/professional/')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="f62e629a-efeb-4b87-adef-44fd05e76046">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="e4175072-7528-4fa4-b670-760d0642d43c">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/facility/')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/facility/')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="a9f667e9-c7e1-4d8e-b5fd-446b65fcc262">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/facilities')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/facilities')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="c912dfc7-caaa-404e-88b5-28690d6d9523">
+                        <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('PUT')"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('PUT')"/>
+                            <property name="evaluator" value="groovy"/>
+                        </property-collection>
+                    </property-collection>
                 </properties>
-                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#2">
-                    <properties>
-                        <property name=";INDEX" value="4"/>
-                        <property-collection name="6efd8d7f-4272-4f14-aabd-47a4b899f17d">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="4888798f-99a3-4c05-b914-05d88ccc4e3c">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounter/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounter/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="17b2a002-63b7-425a-bd2e-7149e82df76e">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/professional/')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/professional/')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="e32b8181-7686-4f1f-b034-f51fab86d46d">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/facilities')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/facilities')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="2a1653a8-e71c-4ea6-8eeb-6cf37ad331cd">
-                            <property name="choice.otherwise" value="true"/>
-                            <property-collection name="choice.attributes"/>
-                        </property-collection>
-                        <property-collection name="1ac5ee54-03e0-4e5f-b85e-4fbb9ff713b4">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/alerts') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/alerts') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="a31501a2-7d81-450a-8816-e5253d33ef62">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="8adca4a3-8739-46f5-95e2-bf0404b2d44d">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="4852f1ed-7399-43cb-a338-a0de2c863f4d">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/professionals')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/professionals')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="31d16709-23ba-4bcb-bc92-e54b3cfe9829">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/facility/')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/facility/')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="a262b7fd-218d-4861-88d2-426cbe8537da">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('PUT')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('PUT')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="c6ede2dc-54b5-496a-8756-e861c2db0aba">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('GET')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                        <property-collection name="1ef92028-96c4-4c3c-8a65-ef8926674980">
-                            <property name="choice.expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-                            <property-collection name="choice.attributes">
-<property name="expression" value="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.path.contains('/encounters') &amp;&amp; message.payload.httpMethod.equals('POST')"/>
-<property name="evaluator" value="groovy"/>
-                            </property-collection>
-                        </property-collection>
-                    </properties>
-                </pattern>
+                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#2"/>
                 <compartment entity-id="compartment#1">
-                    <lane hadOnlyOneElement="false" index="6" isChoiceOtherwiseLane="false" entity-id="e32b8181-7686-4f1f-b034-f51fab86d46d">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#1">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="6" isChoiceOtherwiseLane="false" entity-id="a9f667e9-c7e1-4d8e-b5fd-446b65fcc262">
+                        <pattern name="Log query facilities" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#2">
                             <properties>
-<property name="auxiliary;index" value="6"/>
+<property name="message" value="Transaction type: query facilities"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="7"/>
+<property name="auxiliary;index" value="7"/>
+<property name="auxiliary;index" value="7"/>
                             </properties>
-                            <compartment entity-id="compartment#2">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
-    <pattern name="Log query facilities" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#2">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: query facilities"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="7"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryFacilities-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#2">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="queryFacilities-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="8"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryFacilities-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#2">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="8"/>
+<property name="path" value="queryFacilities-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="8"/>
+<property name="auxiliary;index" value="8"/>
+<property name="auxiliary;index" value="8"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="8"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="8"/>
+<property name="auxiliary;index" value="8"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="8"/>
+<property name="auxiliary;index" value="8"/>
+<property name="auxiliary;index" value="8"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="10" isChoiceOtherwiseLane="false" entity-id="31d16709-23ba-4bcb-bc92-e54b3cfe9829">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#2">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="10" isChoiceOtherwiseLane="false" entity-id="e4175072-7528-4fa4-b670-760d0642d43c">
+                        <pattern name="Log get facility" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#3">
                             <properties>
-<property name="auxiliary;index" value="10"/>
+<property name="message" value="Transaction type: get facility"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="11"/>
+<property name="auxiliary;index" value="11"/>
+<property name="auxiliary;index" value="11"/>
                             </properties>
-                            <compartment entity-id="compartment#3">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
-    <pattern name="Log get facility" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#3">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: get facility"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="11"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getFacility-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#3">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="getFacility-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="12"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getFacility-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#3">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="12"/>
+<property name="path" value="getFacility-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="12"/>
+<property name="auxiliary;index" value="12"/>
+<property name="auxiliary;index" value="12"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="12"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="12"/>
+<property name="auxiliary;index" value="12"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="12"/>
+<property name="auxiliary;index" value="12"/>
+<property name="auxiliary;index" value="12"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="14" isChoiceOtherwiseLane="false" entity-id="17b2a002-63b7-425a-bd2e-7149e82df76e">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#3">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="14" isChoiceOtherwiseLane="false" entity-id="ab7f1e92-61d7-433c-81b4-9984792d19cd">
+                        <pattern name="Log get professional" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#4">
                             <properties>
-<property name="auxiliary;index" value="14"/>
+<property name="message" value="Transaction type: get professional"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="15"/>
+<property name="auxiliary;index" value="15"/>
+<property name="auxiliary;index" value="15"/>
                             </properties>
-                            <compartment entity-id="compartment#4">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#4">
-    <pattern name="Log get professional" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#4">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: get professional"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="15"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getProfessional-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#4">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="getProfessional-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="16"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getProfessional-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#4">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="16"/>
+<property name="path" value="getProfessional-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="16"/>
+<property name="auxiliary;index" value="16"/>
+<property name="auxiliary;index" value="16"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="16"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="16"/>
+<property name="auxiliary;index" value="16"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="16"/>
+<property name="auxiliary;index" value="16"/>
+<property name="auxiliary;index" value="16"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="18" isChoiceOtherwiseLane="false" entity-id="4852f1ed-7399-43cb-a338-a0de2c863f4d">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#4">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="18" isChoiceOtherwiseLane="false" entity-id="a61ca62f-c8d0-450d-8d27-03112ddcbafb">
+                        <pattern name="Log query professionals" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#5">
                             <properties>
-<property name="auxiliary;index" value="18"/>
+<property name="message" value="Transaction type: query professionals"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="19"/>
+<property name="auxiliary;index" value="19"/>
+<property name="auxiliary;index" value="19"/>
                             </properties>
-                            <compartment entity-id="compartment#5">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#5">
-    <pattern name="Log query professionals" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#5">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: query professionals"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="19"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryProfessionals-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#5">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="queryProfessionals-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="20"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryProfessionals-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#5">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="20"/>
+<property name="path" value="queryProfessionals-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="20"/>
+<property name="auxiliary;index" value="20"/>
+<property name="auxiliary;index" value="20"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="20"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="20"/>
+<property name="auxiliary;index" value="20"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="20"/>
+<property name="auxiliary;index" value="20"/>
+<property name="auxiliary;index" value="20"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="22" isChoiceOtherwiseLane="false" entity-id="c6ede2dc-54b5-496a-8756-e861c2db0aba">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#5">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="22" isChoiceOtherwiseLane="false" entity-id="611b78bd-9495-4d7c-99c7-45eddab7dc4d">
+                        <pattern name="Log query encounters" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#6">
                             <properties>
-<property name="auxiliary;index" value="22"/>
+<property name="message" value="Transaction type: query encounters"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="23"/>
+<property name="auxiliary;index" value="23"/>
+<property name="auxiliary;index" value="23"/>
                             </properties>
-                            <compartment entity-id="compartment#6">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#6">
-    <pattern name="Log query encounters" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#6">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: query encounters"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="23"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryEncounters-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#6">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="queryEncounters-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="24"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryEncounters-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#6">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="24"/>
+<property name="path" value="queryEncounters-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="24"/>
+<property name="auxiliary;index" value="24"/>
+<property name="auxiliary;index" value="24"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="24"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="24"/>
+<property name="auxiliary;index" value="24"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="24"/>
+<property name="auxiliary;index" value="24"/>
+<property name="auxiliary;index" value="24"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="26" isChoiceOtherwiseLane="false" entity-id="1ef92028-96c4-4c3c-8a65-ef8926674980">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#6">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="26" isChoiceOtherwiseLane="false" entity-id="a4dff498-b666-41bd-a54d-a92c6b8aacbb">
+                        <pattern name="Log save encounters" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#7">
                             <properties>
-<property name="auxiliary;index" value="26"/>
+<property name="message" value="Transaction type: save encounters"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="27"/>
+<property name="auxiliary;index" value="27"/>
+<property name="auxiliary;index" value="27"/>
                             </properties>
-                            <compartment entity-id="compartment#7">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#7">
-    <pattern name="Log save encounters" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#7">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: save encounters"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="27"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to saveEncounters-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#7">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="saveEncounters-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="28"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to saveEncounters-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#7">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="28"/>
+<property name="path" value="saveEncounters-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="28"/>
+<property name="auxiliary;index" value="28"/>
+<property name="auxiliary;index" value="28"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="28"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="28"/>
+<property name="auxiliary;index" value="28"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="28"/>
+<property name="auxiliary;index" value="28"/>
+<property name="auxiliary;index" value="28"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="30" isChoiceOtherwiseLane="false" entity-id="4888798f-99a3-4c05-b914-05d88ccc4e3c">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#7">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="30" isChoiceOtherwiseLane="false" entity-id="50400a1c-6c78-4966-926d-4c6d05d09b08">
+                        <pattern name="Log get encounter" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#8">
                             <properties>
-<property name="auxiliary;index" value="30"/>
+<property name="message" value="Transaction type: get encounter"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="31"/>
+<property name="auxiliary;index" value="31"/>
+<property name="auxiliary;index" value="31"/>
                             </properties>
-                            <compartment entity-id="compartment#8">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#8">
-    <pattern name="Log get encounter" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#8">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: get encounter"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="31"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getEncounter-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#8">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="getEncounter-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="32"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getEncounter-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#8">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="32"/>
+<property name="path" value="getEncounter-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="32"/>
+<property name="auxiliary;index" value="32"/>
+<property name="auxiliary;index" value="32"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="32"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="32"/>
+<property name="auxiliary;index" value="32"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="32"/>
+<property name="auxiliary;index" value="32"/>
+<property name="auxiliary;index" value="32"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="34" isChoiceOtherwiseLane="false" entity-id="6efd8d7f-4272-4f14-aabd-47a4b899f17d">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#8">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="34" isChoiceOtherwiseLane="false" entity-id="82e14be3-845d-47e1-83ab-0444b904442a">
+                        <pattern name="Log identifier update" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#9">
                             <properties>
-<property name="auxiliary;index" value="34"/>
+<property name="message" value="Transaction type: identifier update"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="35"/>
+<property name="auxiliary;index" value="35"/>
+<property name="auxiliary;index" value="35"/>
                             </properties>
-                            <compartment entity-id="compartment#9">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#9">
-    <pattern name="Log save patient" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#9">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: save patient"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="35"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to savePatient-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#9">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="savePatient-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="36"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to identifierUpdateEvents-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#9">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="36"/>
+<property name="path" value="identifierUpdateEvents-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="36"/>
+<property name="auxiliary;index" value="36"/>
+<property name="auxiliary;index" value="36"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="36"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="36"/>
+<property name="auxiliary;index" value="36"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="36"/>
+<property name="auxiliary;index" value="36"/>
+<property name="auxiliary;index" value="36"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="38" isChoiceOtherwiseLane="false" entity-id="8adca4a3-8739-46f5-95e2-bf0404b2d44d">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#9">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="38" isChoiceOtherwiseLane="false" entity-id="f62e629a-efeb-4b87-adef-44fd05e76046">
+                        <pattern name="Log save patient" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#10">
                             <properties>
-<property name="auxiliary;index" value="38"/>
+<property name="message" value="Transaction type: save patient"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="39"/>
+<property name="auxiliary;index" value="39"/>
+<property name="auxiliary;index" value="39"/>
                             </properties>
-                            <compartment entity-id="compartment#10">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#10">
-    <pattern name="Log query patients" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#10">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: query patients"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="39"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryPatients-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#10">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="queryPatients-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="40"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to savePatient-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#10">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="40"/>
+<property name="path" value="savePatient-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="40"/>
+<property name="auxiliary;index" value="40"/>
+<property name="auxiliary;index" value="40"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="40"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="40"/>
+<property name="auxiliary;index" value="40"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="40"/>
+<property name="auxiliary;index" value="40"/>
+<property name="auxiliary;index" value="40"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="42" isChoiceOtherwiseLane="false" entity-id="a31501a2-7d81-450a-8816-e5253d33ef62">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#10">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="42" isChoiceOtherwiseLane="false" entity-id="bb366997-e0ff-4333-be35-b75b2e0e441d">
+                        <pattern name="Log query patients" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#11">
                             <properties>
-<property name="auxiliary;index" value="42"/>
+<property name="message" value="Transaction type: query patients"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="43"/>
+<property name="auxiliary;index" value="43"/>
+<property name="auxiliary;index" value="43"/>
                             </properties>
-                            <compartment entity-id="compartment#11">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#11">
-    <pattern name="Log get patients" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#11">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: get patients"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="43"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getPatient-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#11">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="getPatient-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="44"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to queryPatients-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#11">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="44"/>
+<property name="path" value="queryPatients-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="44"/>
+<property name="auxiliary;index" value="44"/>
+<property name="auxiliary;index" value="44"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="44"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="44"/>
+<property name="auxiliary;index" value="44"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="44"/>
+<property name="auxiliary;index" value="44"/>
+<property name="auxiliary;index" value="44"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="46" isChoiceOtherwiseLane="false" entity-id="a262b7fd-218d-4861-88d2-426cbe8537da">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#11">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="46" isChoiceOtherwiseLane="false" entity-id="40c2d655-90e6-4609-b986-457c54e7937b">
+                        <pattern name="Log get patients" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#12">
                             <properties>
-<property name="auxiliary;index" value="46"/>
+<property name="message" value="Transaction type: get patients"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="47"/>
+<property name="auxiliary;index" value="47"/>
+<property name="auxiliary;index" value="47"/>
                             </properties>
-                            <compartment entity-id="compartment#12">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#12">
-    <pattern name="Log update patients" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#12">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: update patients"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="47"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to updatePatient-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#12">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="updatePatient-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="48"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to getPatient-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#12">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="48"/>
+<property name="path" value="getPatient-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="48"/>
+<property name="auxiliary;index" value="48"/>
+<property name="auxiliary;index" value="48"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="48"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="48"/>
+<property name="auxiliary;index" value="48"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="48"/>
+<property name="auxiliary;index" value="48"/>
+<property name="auxiliary;index" value="48"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="50" isChoiceOtherwiseLane="false" entity-id="1ac5ee54-03e0-4e5f-b85e-4fbb9ff713b4">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#12">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="50" isChoiceOtherwiseLane="false" entity-id="c912dfc7-caaa-404e-88b5-28690d6d9523">
+                        <pattern name="Log update patients" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#13">
                             <properties>
-<property name="auxiliary;index" value="50"/>
+<property name="message" value="Transaction type: update patients"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="51"/>
+<property name="auxiliary;index" value="51"/>
+<property name="auxiliary;index" value="51"/>
                             </properties>
-                            <compartment entity-id="compartment#13">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#13">
-    <pattern name="Log receive alert" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#13">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="message" value="Transaction type: receive alert"/>
-            <property name="category"/>
-            <property name="level" value="INFO"/>
-            <property name="auxiliary;index" value="51"/>
-        </properties>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to receiveAlert-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#13">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="ref"/>
-            <property name="transformer-refs"/>
-            <property name="address"/>
-            <property name="businessEventsLabel"/>
-            <property name="encoding"/>
-            <property name="path" value="receiveAlert-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs"/>
-            <property name="disableTransportTransformer"/>
-            <property name="mimeType" value="text/plain"/>
-            <property name="responseTimeout" value="10000"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="52"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="connector-ref"/>
-        </properties>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to updatePatient-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#13">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="52"/>
+<property name="path" value="updatePatient-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="52"/>
+<property name="auxiliary;index" value="52"/>
+<property name="auxiliary;index" value="52"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="52"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="52"/>
+<property name="auxiliary;index" value="52"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="52"/>
+<property name="auxiliary;index" value="52"/>
+<property name="auxiliary;index" value="52"/>
+                            </properties>
+                        </endpoint>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="54" isChoiceOtherwiseLane="true" entity-id="2a1653a8-e71c-4ea6-8eeb-6cf37ad331cd">
-                        <scope name="Processor Chain" type="http://www.mulesoft.org/schema/mule/core/processor-chain" entity-id="Processor Chain#13">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
+                    <lane hadOnlyOneElement="false" index="54" isChoiceOtherwiseLane="false" entity-id="05111743-bad8-4ef1-a4fa-fc0920cc603a">
+                        <pattern name="Log receive alert" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#14">
                             <properties>
-<property name="auxiliary;index" value="54"/>
+<property name="message" value="Transaction type: receive alert"/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="55"/>
+<property name="auxiliary;index" value="55"/>
+<property name="auxiliary;index" value="55"/>
                             </properties>
-                            <compartment entity-id="compartment#14">
-<lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#14">
-    <pattern name="Log send to default channel" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#14">
-        <graphicalData x="471" y="1691" width="198" height="71"/>
-        <properties>
-            <property name="message" value="Could not find a matching route for path #[groovy: return message.payload.getPath();] sending to default channel "/>
-            <property name="category" value=""/>
-            <property name="level" value="INFO"/>
-            <property name="updated"/>
-            <property name="auxiliary;index" value="55"/>
-        </properties>
-        <description></description>
-    </pattern>
-    <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to defaultChannel-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="3ce765e1-3b9d-4634-a464-3aec1b5f0350">
-        <graphicalData x="0" y="0" width="0" height="0"/>
-        <properties>
-            <property name="auxiliary;erased;mimeType" value="true"/>
-            <property name="disableTransportTransformer" value="false"/>
-            <property name="exchange-pattern" value="request-response"/>
-            <property name="ref" value=""/>
-            <property name="transformer-refs" value=""/>
-            <property name="updated"/>
-            <property name="address" value=""/>
-            <property name="auxiliary;erased;encoding" value="true"/>
-            <property name="encoding" value=""/>
-            <property name="path" value="defaultChannel-Generic-NormalizationQueue"/>
-            <property name="responseTransformer-refs" value=""/>
-            <property name="mimeType" value=""/>
-            <property name="responseTimeout" value=""/>
-            <property name="auxiliary;erased;responseTimeout" value="true"/>
-            <property name="connector-ref" value=""/>
-        </properties>
-        <description></description>
-    </endpoint>
-</lane>
-                            </compartment>
-                        </scope>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to receiveAlert-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#14">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="56"/>
+<property name="path" value="receiveAlert-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="56"/>
+<property name="auxiliary;index" value="56"/>
+<property name="auxiliary;index" value="56"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="56"/>
+<property name="address"/>
+<property name="responseTimeout" value="10000"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType" value="text/plain"/>
+<property name="auxiliary;index" value="56"/>
+<property name="auxiliary;index" value="56"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="56"/>
+<property name="auxiliary;index" value="56"/>
+<property name="auxiliary;index" value="56"/>
+                            </properties>
+                        </endpoint>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="58" isChoiceOtherwiseLane="true" entity-id="4c6a86ee-0d1f-4fd0-ad10-47dbba718560">
+                        <pattern name="Log send to default channel" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#15">
+                            <properties>
+<property name="message" value="Could not find a matching route for path #[groovy: return message.payload.getPath();] sending to default channel "/>
+<property name="level" value="INFO"/>
+<property name="category"/>
+<property name="auxiliary;index" value="59"/>
+<property name="auxiliary;index" value="59"/>
+<property name="auxiliary;index" value="59"/>
+                            </properties>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="OneWay" name="Send to defaultChannel-Generic-NormalizationQueue" type="http://www.mulesoft.org/schema/mule/vm/endpoint" entity-id="VM#15">
+                            <properties>
+<property name="exchange-pattern" value="one-way"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="auxiliary;index" value="60"/>
+<property name="path" value="defaultChannel-Generic-NormalizationQueue"/>
+<property name="auxiliary;index" value="60"/>
+<property name="auxiliary;index" value="60"/>
+<property name="auxiliary;index" value="60"/>
+<property name="businessEventsLabel"/>
+<property name="tracking:enable-default-events"/>
+<property name="auxiliary;index" value="60"/>
+<property name="address"/>
+<property name="responseTimeout"/>
+<property name="encoding"/>
+<property name="disableTransportTransformer"/>
+<property name="mimeType"/>
+<property name="auxiliary;index" value="60"/>
+<property name="auxiliary;index" value="60"/>
+<property name="connector-ref"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="responseTransformer-refs"/>
+<property name="auxiliary;index" value="60"/>
+<property name="auxiliary;index" value="60"/>
+<property name="auxiliary;index" value="60"/>
+                            </properties>
+                        </endpoint>
                     </lane>
                 </compartment>
             </splitter>
